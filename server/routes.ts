@@ -156,8 +156,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Blog routes
   app.get("/api/blogs", async (req, res) => {
     try {
-      const blogs = await storage.getBlogs();
-      res.json(blogs);
+      const { authorId } = req.query;
+      if (authorId) {
+        const blogs = await storage.getBlogsByAuthor(parseInt(authorId as string));
+        const blogsWithAuthor = await Promise.all(
+          blogs.map(async (blog) => {
+            const author = await storage.getUser(blog.authorId);
+            return {
+              ...blog,
+              author: {
+                id: author!.id,
+                username: author!.username,
+                email: author!.email
+              }
+            };
+          })
+        );
+        res.json(blogsWithAuthor);
+      } else {
+        const blogs = await storage.getBlogs();
+        res.json(blogs);
+      }
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch blogs" });
     }

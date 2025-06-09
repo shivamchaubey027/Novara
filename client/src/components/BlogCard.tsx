@@ -23,21 +23,22 @@ export default function BlogCard({ blog }: BlogCardProps) {
   };
 
   return (
-    <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
-      {blog.imageUrl ? (
-        <img 
-          src={blog.imageUrl} 
-          alt={blog.title}
-          className="w-full h-48 object-cover"
-        />
-      ) : (
-        <div className="w-full h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-          <div className="text-slate-400 text-center">
-            <div className="text-4xl mb-2">📝</div>
-            <div className="text-sm">Blog Post</div>
+    <Link href={`/blogs/${blog.id}`}>
+      <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col cursor-pointer">
+        {blog.imageUrl ? (
+          <img 
+            src={blog.imageUrl} 
+            alt={blog.title}
+            className="w-full h-48 object-cover"
+          />
+        ) : (
+          <div className="w-full h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+            <div className="text-slate-400 text-center">
+              <div className="text-4xl mb-2">📝</div>
+              <div className="text-sm">Blog Post</div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
       
       <CardContent className="p-6 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-3">
@@ -84,5 +85,6 @@ export default function BlogCard({ blog }: BlogCardProps) {
         </div>
       </CardContent>
     </Card>
+    </Link>
   );
 }
