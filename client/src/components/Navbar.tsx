@@ -31,36 +31,28 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/">
-              <a className={`font-medium transition-colors duration-200 ${
-                isActive('/') ? 'text-primary' : 'text-slate-700 hover:text-primary'
-              }`}>
-                Home
-              </a>
+            <Link href="/" className={`font-medium transition-colors duration-200 ${
+              isActive('/') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+            }`}>
+              Home
             </Link>
-            <Link href="/buy">
-              <a className={`font-medium transition-colors duration-200 ${
-                isActive('/buy') ? 'text-primary' : 'text-slate-700 hover:text-primary'
-              }`}>
-                Buy
-              </a>
+            <Link href="/buy" className={`font-medium transition-colors duration-200 ${
+              isActive('/buy') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+            }`}>
+              Buy
             </Link>
-            <Link href="/blogs">
-              <a className={`font-medium transition-colors duration-200 ${
-                isActive('/blogs') ? 'text-primary' : 'text-slate-700 hover:text-primary'
-              }`}>
-                Blogs
-              </a>
+            <Link href="/blogs" className={`font-medium transition-colors duration-200 ${
+              isActive('/blogs') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+            }`}>
+              Blogs
             </Link>
             
             {user ? (
               <div className="flex items-center space-x-4">
-                <Link href="/dashboard">
-                  <a className={`font-medium transition-colors duration-200 ${
-                    isActive('/dashboard') ? 'text-primary' : 'text-slate-700 hover:text-primary'
-                  }`}>
-                    Dashboard
-                  </a>
+                <Link href="/dashboard" className={`font-medium transition-colors duration-200 ${
+                  isActive('/dashboard') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+                }`}>
+                  Dashboard
                 </Link>
                 <Button
                   onClick={handleLogout}
@@ -95,40 +87,36 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-slate-200">
             <div className="flex flex-col space-y-4">
-              <Link href="/">
-                <a 
-                  className="text-slate-700 hover:text-primary font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Home
-                </a>
+              <Link 
+                href="/"
+                className="text-slate-700 hover:text-primary font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Home
               </Link>
-              <Link href="/buy">
-                <a 
-                  className="text-slate-700 hover:text-primary font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Buy
-                </a>
+              <Link 
+                href="/buy"
+                className="text-slate-700 hover:text-primary font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Buy
               </Link>
-              <Link href="/blogs">
-                <a 
-                  className="text-slate-700 hover:text-primary font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Blogs
-                </a>
+              <Link 
+                href="/blogs"
+                className="text-slate-700 hover:text-primary font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Blogs
               </Link>
               
               {user ? (
                 <>
-                  <Link href="/dashboard">
-                    <a 
-                      className="text-slate-700 hover:text-primary font-medium"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Dashboard
-                    </a>
+                  <Link 
+                    href="/dashboard"
+                    className="text-slate-700 hover:text-primary font-medium"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Dashboard
                   </Link>
                   <Button
                     onClick={handleLogout}

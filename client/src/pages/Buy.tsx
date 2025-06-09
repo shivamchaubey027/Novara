@@ -20,9 +20,9 @@ export default function Buy() {
   // Build query parameters
   const queryParams = new URLSearchParams();
   if (searchQuery) queryParams.append('search', searchQuery);
-  if (selectedGenre) queryParams.append('genre', selectedGenre);
-  if (selectedCondition) queryParams.append('condition', selectedCondition);
-  if (priceRange) {
+  if (selectedGenre && selectedGenre !== 'all') queryParams.append('genre', selectedGenre);
+  if (selectedCondition && selectedCondition !== 'all') queryParams.append('condition', selectedCondition);
+  if (priceRange && priceRange !== 'all') {
     const [min, max] = priceRange.split('-');
     if (min) queryParams.append('minPrice', min);
     if (max) queryParams.append('maxPrice', max);
@@ -109,7 +109,7 @@ export default function Buy() {
                   <SelectValue placeholder="Genre" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Genres</SelectItem>
+                  <SelectItem value="all">All Genres</SelectItem>
                   {genres.map(genre => (
                     <SelectItem key={genre} value={genre}>{genre}</SelectItem>
                   ))}
@@ -121,7 +121,7 @@ export default function Buy() {
                   <SelectValue placeholder="Condition" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Conditions</SelectItem>
+                  <SelectItem value="all">All Conditions</SelectItem>
                   {conditions.map(condition => (
                     <SelectItem key={condition} value={condition}>{condition}</SelectItem>
                   ))}
@@ -133,7 +133,7 @@ export default function Buy() {
                   <SelectValue placeholder="Price Range" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Prices</SelectItem>
+                  <SelectItem value="all">All Prices</SelectItem>
                   <SelectItem value="0-10">$0 - $10</SelectItem>
                   <SelectItem value="10-25">$10 - $25</SelectItem>
                   <SelectItem value="25-50">$25 - $50</SelectItem>
