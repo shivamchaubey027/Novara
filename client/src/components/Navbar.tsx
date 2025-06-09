@@ -30,19 +30,19 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className={`font-medium transition-colors duration-200 ${
-              isActive('/') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+          <div className="hidden md:flex items-center space-x-12">
+            <Link href="/" className={`font-medium text-lg transition-colors duration-200 ${
+              isActive('/') ? 'text-gold border-b-2 border-gold pb-1' : 'text-gray-700 hover:text-gold'
             }`}>
               Home
             </Link>
-            <Link href="/buy" className={`font-medium transition-colors duration-200 ${
-              isActive('/buy') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+            <Link href="/buy" className={`font-medium text-lg transition-colors duration-200 ${
+              isActive('/buy') ? 'text-gold border-b-2 border-gold pb-1' : 'text-gray-700 hover:text-gold'
             }`}>
               Buy
             </Link>
-            <Link href="/blogs" className={`font-medium transition-colors duration-200 ${
-              isActive('/blogs') ? 'text-primary' : 'text-slate-700 hover:text-primary'
+            <Link href="/blogs" className={`font-medium text-lg transition-colors duration-200 ${
+              isActive('/blogs') ? 'text-gold border-b-2 border-gold pb-1' : 'text-gray-700 hover:text-gold'
             }`}>
               Blogs
             </Link>

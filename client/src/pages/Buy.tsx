@@ -38,8 +38,8 @@ export default function Buy() {
   });
 
   const availableBooks = books.filter(book => !book.isSold);
-  const genres = [...new Set(books.map(book => book.genre))];
-  const conditions = [...new Set(books.map(book => book.condition))];
+  const genres = Array.from(new Set(books.map(book => book.genre)));
+  const conditions = Array.from(new Set(books.map(book => book.condition)));
 
   const handleAddToCart = (book: BookWithSeller) => {
     toast({
