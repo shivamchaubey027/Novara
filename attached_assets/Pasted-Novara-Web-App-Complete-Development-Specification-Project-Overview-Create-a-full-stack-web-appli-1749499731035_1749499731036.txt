@@ -1,0 +1,251 @@
+Novara Web App - Complete Development Specification
+Project Overview
+Create a full-stack web application called "Novara" - a book marketplace where users can buy and sell books with an integrated blogging platform.
+Tech Stack Requirements
+
+Frontend: React.js with modern hooks and functional components
+Backend: Plain Java
+Database: whatever is simple but safe
+Styling: Tailwind CSS for elegant, responsive design
+Deployment: Frontend on Vercel, Backend deployable on Railway/Render
+
+Core Features & Pages
+1. Landing Page (/)
+
+Hero Section:
+
+Elegant banner with "Novara" branding
+Two prominent buttons: "Buy Books" and "Sell Books"
+"Buy Books" → redirects to /buy
+"Sell Books" → redirects to /signin (if not logged in)
+
+
+Navigation Bar: Centered with 4 links: Home, Buy, Blogs, Sign In
+Additional sections: Featured books, testimonials, how it works
+
+2. Buy Page (/buy)
+
+Book Listings: Grid layout of available books
+Filtering System:
+
+Filter by genre, price range, condition, author
+Search functionality
+Tag-based filtering (tags assigned during book posting)
+
+
+Book Cards: Image, title, author, price, condition, seller info
+Purchase Flow: Add to cart → Checkout (simplified for demo)
+
+3. Authentication System
+
+Sign In/Sign Up: Clean forms with validation
+JWT-based authentication
+Protected routes for dashboard and selling features
+
+4. User Dashboard (/dashboard) - Protected Route
+Sidebar Navigation with sections:
+
+Profile Management: Edit profile, upload profile picture
+Sell Books: Form to add new books with:
+
+Title, Author, Description, Price, Condition
+Image upload capability
+Genre/Category selection
+Tag system for better filtering
+
+
+My Listings: View/edit/delete posted books
+My Orders: Purchase history and status
+Blog Management: Create, edit, delete personal blogs
+Analytics: Basic stats (books sold, revenue, etc.)
+
+5. Blogs Page (/blogs)
+
+Elegant Blog Layout:
+
+Featured posts section
+Grid of blog cards with author info
+Search and category filtering
+
+
+Individual Blog View: Full blog post with comments section
+Author profiles: Click on author to see their books and blogs
+
+Technical Implementation Details
+Backend (Java)
+java// Required Controllers
+- AuthController (login, register, JWT handling)
+- BookController (CRUD operations, filtering)
+- BlogController (CRUD operations)
+- UserController (profile management)
+- OrderController (purchase handling)
+
+// Entity Models
+- User (id, username, email, password, profilePicture, role)
+- Book (id, title, author, description, price, condition, tags, sellerId, imageUrl)
+- Blog (id, title, content, authorId, createdAt, tags)
+- Order (id, buyerId, bookId, status, orderDate, totalAmount)
+
+// Database Configuration
+- H2 for development (file-based for persistence)
+- JPA/Hibernate for ORM
+- Database initialization with sample data
+Frontend (React)
+javascript// Required Components
+- Navbar (responsive, centered navigation)
+- HomePage (hero section, featured content)
+- BuyPage (product grid, filters, search)
+- Dashboard (sidebar layout, multiple sections)
+- BlogsPage (blog grid, individual blog view)
+- AuthForms (login, register with validation)
+- BookForm (sell book form with image upload)
+- BlogEditor (rich text editor for blog creation)
+
+// State Management
+- Context API for user authentication
+- React Query/SWR for server state
+- Local state for forms and UI interactions
+
+// Key Features to Implement
+- Image upload and display
+- Real-time search and filtering
+- Responsive design (mobile-first)
+- Form validation and error handling
+- Loading states and error boundaries
+Database Schema
+sql-- Users table
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    profile_picture VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Books table
+CREATE TABLE books (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    condition VARCHAR(20) NOT NULL,
+    tags VARCHAR(500),
+    seller_id BIGINT NOT NULL,
+    image_url VARCHAR(255),
+    is_sold BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (seller_id) REFERENCES users(id)
+);
+
+-- Blogs table
+CREATE TABLE blogs (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    author_id BIGINT NOT NULL,
+    tags VARCHAR(300),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES users(id)
+);
+
+-- Orders table
+CREATE TABLE orders (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    buyer_id BIGINT NOT NULL,
+    book_id BIGINT NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'PENDING',
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (buyer_id) REFERENCES users(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+Deployment Configuration
+Vercel Deployment (Frontend)
+json// vercel.json
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
+
+// Environment variables needed:
+REACT_APP_API_URL=your-backend-url
+Backend Deployment Ready
+
+Docker configuration for easy deployment
+Environment-based database switching
+CORS configuration for frontend integration
+Security configurations (JWT secret, password encryption)
+
+Design Requirements
+
+Modern, elegant UI with clean typography
+Consistent color scheme (professional blue/gray palette)
+Responsive design that works on all devices
+Smooth animations and transitions
+Intuitive user experience with clear navigation
+Professional book marketplace aesthetic
+
+Security Features
+
+JWT authentication with refresh tokens
+Password hashing using BCrypt
+Input validation on both frontend and backend
+SQL injection prevention through parameterized queries
+CORS protection properly configured
+File upload security with type and size validation
+
+Development Setup Instructions
+
+Backend Setup:
+bashcd novara-backend
+mvn spring-boot:run
+
+Frontend Setup:
+bashcd novara-frontend
+npm install
+npm start
+
+Database: H2 console available at http://localhost:8080/h2-console
+
+Additional Features to Include
+
+Image optimization and storage
+Email notifications for orders
+Basic payment integration (Stripe test mode)
+User ratings and reviews
+Book recommendation system
+Mobile-responsive design
+SEO optimization
+
+Project Structure
+novara/
+├── backend/
+│   ├── src/main/java/com/novara/
+│   │   ├── controller/
+│   │   ├── entity/
+│   │   ├── repository/
+│   │   ├── service/
+│   │   └── config/
+│   └── pom.xml
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── context/
+│   │   ├── utils/
+│   │   └── styles/
+│   └── package.json
+└── README.md
+This specification provides everything needed to build a complete, functional, and deployable Novara web application with all requested features.
