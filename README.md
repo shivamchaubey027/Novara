@@ -83,7 +83,7 @@ Want to see it in action? Follow these simple steps.
 4.  **Open the application:**
     Navigate to `http://localhost:5000` in your web browser.
 
-### For the Curious Recruiter (Technical Deep Dive)
+### For the Curious Ones (Technical Deep Dive)
 
 For those who want to look under the hood, here are the project's structural and API details.
 
