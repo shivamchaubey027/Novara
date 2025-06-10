@@ -23,8 +23,8 @@ Novara Bookstore is the result of that journey. It's more than just a portfolio 
 | Buyer's Home Page | Buy Page | Product Details Page | Shopping Cart | Blog Platform |
 | :---: | :---: | :---: | :---: | :---: |
 | ![Buyer's Home Page](./screenshots/Home.png) | ![Buy Page](./screenshots/Buy_Page.png) |  ![Product Details Page](./screenshots/Product_Details.png) | ![Shopping Cart](./screenshots/Checkout_Cart.png) | ![Blog Platform](./screenshots/Blog_Page.png) |
-| **Registration Page** | **Dashboards Overview** | **Sellers Dashboard** | **Dark Mode** | **Book Listing Form** |
-|![Registration Page](./screenshots/Sign_up.png)|![Dashboard Overview](./screenshots/Dashboard_Overview.png)|![Seller's Dashboard](./screenshots/Dashboard_BookListing.png) |  ![Mobile Responsive View](./screenshots/image8.png) | ![Dark Mode](./screenshots/image9.png) | ![Book Listing Form](./screenshots/image10.png) |
+| **Registration Page** | **Dashboards Overview** | **Sellers Dashboard** | **Blog Page** | **Blog Page** |
+|![Registration Page](./screenshots/Sign_up.png)|![Dashboard Overview](./screenshots/Dashboard_Overview.png)|![Seller's Dashboard](./screenshots/Dashboard_BookListing.png) |  ![Blog Page](./screenshots/Blog1.png) | ![Dark Mode](./screenshots/Blog2.png) | ![Book Listing Form](./screenshots/image10.png) |
 
 
 ### Core Features
