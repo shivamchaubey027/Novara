@@ -4,10 +4,13 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/context/AuthContext";
+import { CartProvider } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import Buy from "@/pages/Buy";
+import ProductDetails from "@/pages/ProductDetails";
+import Cart from "@/pages/Cart";
 import Blogs from "@/pages/Blogs";
 import BlogPost from "@/pages/BlogPost";
 import Auth from "@/pages/Auth";
@@ -22,6 +25,8 @@ function Router() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/buy" component={Buy} />
+          <Route path="/book/:id" component={ProductDetails} />
+          <Route path="/cart" component={Cart} />
           <Route path="/blogs" component={Blogs} />
           <Route path="/blogs/:id" component={BlogPost} />
           <Route path="/auth" component={Auth} />
@@ -38,10 +43,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <CartProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

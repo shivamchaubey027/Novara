@@ -1,12 +1,14 @@
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
+import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
   const [location] = useLocation();
   const { user, logout } = useAuth();
+  const { getItemCount } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -51,6 +53,16 @@ export default function Navbar() {
             
             {user ? (
               <div className="flex items-center space-x-4">
+                <Link href="/cart" className="relative">
+                  <Button variant="ghost" size="sm" className="text-slate-700 hover:text-primary">
+                    <ShoppingCart className="h-5 w-5" />
+                    {getItemCount() > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {getItemCount()}
+                      </span>
+                    )}
+                  </Button>
+                </Link>
                 <Link href="/dashboard" className={`font-medium transition-colors duration-200 ${
                   isActive('/dashboard') ? 'text-primary' : 'text-slate-700 hover:text-primary'
                 }`}>
@@ -60,6 +72,7 @@ export default function Navbar() {
                   onClick={handleLogout}
                   variant="outline"
                   size="sm"
+                  className="border-slate-300 text-slate-700 hover:bg-slate-50"
                 >
                   Logout
                 </Button>
