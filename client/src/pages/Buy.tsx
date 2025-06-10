@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { Search, Filter } from 'lucide-react';
 import BookCard from '@/components/BookCard';
 import { useToast } from '@/hooks/use-toast';
+import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import type { BookWithSeller } from '@shared/schema';
 
 export default function Buy() {
@@ -16,6 +18,8 @@ export default function Buy() {
   const [selectedCondition, setSelectedCondition] = useState<string>('');
   const [priceRange, setPriceRange] = useState<string>('');
   const { toast } = useToast();
+  const { addToCart } = useCart();
+  const { user } = useAuth();
 
   // Build query parameters
   const queryParams = new URLSearchParams();
@@ -42,6 +46,16 @@ export default function Buy() {
   const conditions = Array.from(new Set(books.map(book => book.condition)));
 
   const handleAddToCart = (book: BookWithSeller) => {
+    if (!user) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to add items to your cart.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    addToCart(book);
     toast({
       title: "Added to Cart",
       description: `"${book.title}" has been added to your cart.`,
