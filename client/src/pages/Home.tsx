@@ -24,22 +24,22 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="relative bg-white py-20 lg:py-32">
+      <section className="relative bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-primary leading-tight mb-6">
+              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
                 Elegant Book Marketplace for{' '}
-                <span className="text-accent">Modern Readers</span>
+                <span className="text-blue-600 dark:text-blue-400">Modern Readers</span>
               </h1>
-              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                 Discover rare finds, sell your collection, and connect with fellow book enthusiasts in our sophisticated literary community.
               </p>
               
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/buy">
-                  <Button size="lg" className="bg-accent text-white hover:bg-blue-600 text-lg px-8 py-4">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4">
                     <BookOpen className="mr-2 h-5 w-5" />
                     Buy Books
                   </Button>
@@ -48,7 +48,7 @@ export default function Home() {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white text-lg px-8 py-4"
+                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg px-8 py-4"
                   >
                     <Upload className="mr-2 h-5 w-5" />
                     Sell Books
