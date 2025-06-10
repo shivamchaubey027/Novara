@@ -20,11 +20,11 @@ Novara Bookstore is the result of that journey. It's more than just a portfolio 
 
 *A quick tour of the application's key features.*
 
-| Buyer's Home Page | Product Details Page | Shopping Cart | Seller's Dashboard | Blog Platform |
+| Buyer's Home Page | Buy Page | Product Details Page | Blogs | Blog Platform |
 | :---: | :---: | :---: | :---: | :---: |
-| ![Buyer's Home Page](./screenshots/home.png) | ![Product Details Page](./screenshots/Product_Details.png) | ![Shopping Cart](./screenshots/Checkout_Cart.png.png) | ![Seller's Dashboard](./screenshots/Dashboard_BookListing.png.png) | ![Blog Platform](./screenshots/Blog_Page.png) |
-| **Login Page** | **Registration Page** | **Mobile Responsive View** | **Dark Mode** | **Book Listing Form** |
-| ![Login Page](./screenshots/image6.png) | ![Registration Page](./screenshots/image7.png) | ![Mobile Responsive View](./screenshots/image8.png) | ![Dark Mode](./screenshots/image9.png) | ![Book Listing Form](./screenshots/image10.png) |
+| ![Buyer's Home Page](./screenshots/Home.png) | ![Buy Page](./screenshots/Buy_Page.png) |  ![Product Details Page](./screenshots/Product_Details.png) | ![Shopping Cart](./screenshots/Checkout_Cart.png) | ![Blog Platform](./screenshots/Blog_Page.png) |
+| **Registration Page** | **Dashboards Overview** | **Sellers Dashboard** | **Dark Mode** | **Book Listing Form** |
+|![Registration Page](./screenshots/Sign_up.png)|![Dashboard Overview](./screenshots/Dashboard_Overview.png)|![Seller's Dashboard](./screenshots/Dashboard_BookListing.png) |  ![Mobile Responsive View](./screenshots/image8.png) | ![Dark Mode](./screenshots/image9.png) | ![Book Listing Form](./screenshots/image10.png) |
 
 
 ### Core Features
