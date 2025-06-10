@@ -20,7 +20,7 @@ Novara Bookstore is the result of that journey. It's more than just a portfolio 
 
 *A quick tour of the application's key features.*
 
-| Buyer's Home Page | Buy Page | Product Details Page | Blogs | Blog Platform |
+| Buyer's Home Page | Buy Page | Product Details Page | Shopping Cart | Blog Platform |
 | :---: | :---: | :---: | :---: | :---: |
 | ![Buyer's Home Page](./screenshots/Home.png) | ![Buy Page](./screenshots/Buy_Page.png) |  ![Product Details Page](./screenshots/Product_Details.png) | ![Shopping Cart](./screenshots/Checkout_Cart.png) | ![Blog Platform](./screenshots/Blog_Page.png) |
 | **Registration Page** | **Dashboards Overview** | **Sellers Dashboard** | **Dark Mode** | **Book Listing Form** |
