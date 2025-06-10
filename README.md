@@ -2,7 +2,7 @@
 
 *A full-stack marketplace born from a journey into React and an unexpected, but welcome, dive into TypeScript.*
 
-![Project Banner](./screenshots/banner.png)
+![Project Banner](./screenshots/Home.png)
 
 ---
 
