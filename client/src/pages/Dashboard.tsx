@@ -489,7 +489,7 @@ export default function Dashboard() {
                   <Button 
                     type="submit" 
                     disabled={createBookMutation.isPending}
-                    className="w-full bg-accent text-white hover:bg-blue-600"
+                    className="w-full bg-slate-200 text-black border-black  hover:bg-black hover:text-white"
                   >
                     {createBookMutation.isPending ? "Listing Book..." : "List Book for Sale"}
                   </Button>
@@ -638,7 +638,7 @@ export default function Dashboard() {
                   <Button 
                     type="submit" 
                     disabled={createBlogMutation.isPending}
-                    className="w-full bg-accent text-white hover:bg-blue-600"
+                    className="w-full bg-slate-200 text-black border-black  hover:bg-black hover:text-white"
                   >
                     {createBlogMutation.isPending ? "Publishing..." : "Publish Blog Post"}
                   </Button>

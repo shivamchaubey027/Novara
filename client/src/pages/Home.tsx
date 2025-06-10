@@ -63,7 +63,7 @@ export default function Home() {
 
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                src="https://www.publishcentral.com.au/wp-content/uploads/2023/05/book-pile-of-must-read-books-scaled1.jpeg"
                 alt="Stack of vintage books"
                 className="rounded-2xl shadow-2xl w-full h-auto"
               />
