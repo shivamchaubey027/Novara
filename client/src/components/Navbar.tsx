@@ -1,9 +1,9 @@
-import { Link, useLocation } from 'wouter';
-import { useAuth } from '@/context/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Menu, X, ShoppingCart } from 'lucide-react';
-import { useState } from 'react';
-import { useCart } from '@/context/CartContext';
+import { Link, useLocation } from "wouter";
+import { useAuth } from "@/context/AuthContext";
+import { Button } from "@/components/ui/button";
+import { Menu, X, ShoppingCart } from "lucide-react";
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -32,29 +32,48 @@ export default function Navbar() {
               </h1>
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-12">
-            <Link href="/" className={`font-medium text-lg transition-colors duration-200 ${
-              isActive('/') ? 'text-gold border-b-2 border-gold pb-1' : 'text-gray-700 hover:text-gold'
-            }`}>
+            <Link
+              href="/"
+              className={`font-medium text-lg transition-colors duration-200 ${
+                isActive("/")
+                  ? "text-gold border-b-2 border-gold pb-1"
+                  : "text-gray-700 hover:text-gold"
+              }`}
+            >
               Home
             </Link>
-            <Link href="/buy" className={`font-medium text-lg transition-colors duration-200 ${
-              isActive('/buy') ? 'text-gold border-b-2 border-gold pb-1' : 'text-gray-700 hover:text-gold'
-            }`}>
+            <Link
+              href="/buy"
+              className={`font-medium text-lg transition-colors duration-200 ${
+                isActive("/buy")
+                  ? "text-gold border-b-2 border-gold pb-1"
+                  : "text-gray-700 hover:text-gold"
+              }`}
+            >
               Buy
             </Link>
-            <Link href="/blogs" className={`font-medium text-lg transition-colors duration-200 ${
-              isActive('/blogs') ? 'text-gold border-b-2 border-gold pb-1' : 'text-gray-700 hover:text-gold'
-            }`}>
+            <Link
+              href="/blogs"
+              className={`font-medium text-lg transition-colors duration-200 ${
+                isActive("/blogs")
+                  ? "text-gold border-b-2 border-gold pb-1"
+                  : "text-gray-700 hover:text-gold"
+              }`}
+            >
               Blogs
             </Link>
-            
+
             {user ? (
               <div className="flex items-center space-x-4">
                 <Link href="/cart" className="relative">
-                  <Button variant="ghost" size="sm" className="text-slate-700 hover:text-primary">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-slate-700 hover:text-primary"
+                  >
                     <ShoppingCart className="h-5 w-5" />
                     {getItemCount() > 0 && (
                       <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -63,9 +82,14 @@ export default function Navbar() {
                     )}
                   </Button>
                 </Link>
-                <Link href="/dashboard" className={`font-medium transition-colors duration-200 ${
-                  isActive('/dashboard') ? 'text-primary' : 'text-slate-700 hover:text-primary'
-                }`}>
+                <Link
+                  href="/dashboard"
+                  className={`font-medium transition-colors duration-200 ${
+                    isActive("/dashboard")
+                      ? "text-primary"
+                      : "text-slate-700 hover:text-primary"
+                  }`}
+                >
                   Dashboard
                 </Link>
                 <Button
@@ -79,9 +103,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Link href="/auth">
-                <Button className="bg-primary text-white hover:bg-slate-800">
-                  Sign In
-                </Button>
+                <Button className="text-white bg-slate-800">Sign In</Button>
               </Link>
             )}
           </div>
@@ -93,7 +115,11 @@ export default function Navbar() {
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
         </div>
@@ -102,31 +128,31 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-slate-200">
             <div className="flex flex-col space-y-4">
-              <Link 
+              <Link
                 href="/"
                 className="text-slate-700 hover:text-primary font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
-              <Link 
+              <Link
                 href="/buy"
                 className="text-slate-700 hover:text-primary font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Buy
               </Link>
-              <Link 
+              <Link
                 href="/blogs"
                 className="text-slate-700 hover:text-primary font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blogs
               </Link>
-              
+
               {user ? (
                 <>
-                  <Link 
+                  <Link
                     href="/dashboard"
                     className="text-slate-700 hover:text-primary font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -144,8 +170,8 @@ export default function Navbar() {
                 </>
               ) : (
                 <Link href="/auth">
-                  <Button 
-                    className="bg-primary text-white hover:bg-slate-800 w-fit"
+                  <Button
+                    className="bg-primary border-black text-black hover:bg-slate-800 hover:text-white w-fit"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sign In

@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { useLocation } from 'wouter';
-import { useAuth } from '@/context/AuthContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useToast } from '@/hooks/use-toast';
-import { BookOpen, Mail, Lock, User } from 'lucide-react';
+import { useState } from "react";
+import { useLocation } from "wouter";
+import { useAuth } from "@/context/AuthContext";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
+import { BookOpen, Mail, Lock, User } from "lucide-react";
 
 export default function Auth() {
   const [, navigate] = useLocation();
   const { login, register } = useAuth();
   const { toast } = useToast();
-  
+
   const [isLoading, setIsLoading] = useState(false);
-  const [loginData, setLoginData] = useState({ email: '', password: '' });
-  const [registerData, setRegisterData] = useState({ 
-    username: '', 
-    email: '', 
-    password: '', 
-    confirmPassword: '' 
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [registerData, setRegisterData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -33,7 +33,7 @@ export default function Auth() {
         title: "Welcome back!",
         description: "You have been successfully logged in.",
       });
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
       toast({
         title: "Login Failed",
@@ -47,7 +47,7 @@ export default function Auth() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (registerData.password !== registerData.confirmPassword) {
       toast({
         title: "Registration Failed",
@@ -78,7 +78,7 @@ export default function Auth() {
         title: "Welcome to Novara!",
         description: "Your account has been created successfully.",
       });
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
       toast({
         title: "Registration Failed",
@@ -127,7 +127,9 @@ export default function Auth() {
                         type="email"
                         placeholder="your@email.com"
                         value={loginData.email}
-                        onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                        onChange={(e) =>
+                          setLoginData({ ...loginData, email: e.target.value })
+                        }
                         className="pl-10"
                         required
                       />
@@ -143,7 +145,12 @@ export default function Auth() {
                         type="password"
                         placeholder="Your password"
                         value={loginData.password}
-                        onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                        onChange={(e) =>
+                          setLoginData({
+                            ...loginData,
+                            password: e.target.value,
+                          })
+                        }
                         className="pl-10"
                         required
                       />
@@ -153,7 +160,7 @@ export default function Auth() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-accent text-white hover:bg-blue-600"
+                    className="w-full bg-slate-200 text-black border-black  hover:bg-black hover:text-white"
                   >
                     {isLoading ? "Signing In..." : "Sign In"}
                   </Button>
@@ -172,7 +179,12 @@ export default function Auth() {
                         type="text"
                         placeholder="Your username"
                         value={registerData.username}
-                        onChange={(e) => setRegisterData({ ...registerData, username: e.target.value })}
+                        onChange={(e) =>
+                          setRegisterData({
+                            ...registerData,
+                            username: e.target.value,
+                          })
+                        }
                         className="pl-10"
                         required
                       />
@@ -188,7 +200,12 @@ export default function Auth() {
                         type="email"
                         placeholder="your@email.com"
                         value={registerData.email}
-                        onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                        onChange={(e) =>
+                          setRegisterData({
+                            ...registerData,
+                            email: e.target.value,
+                          })
+                        }
                         className="pl-10"
                         required
                       />
@@ -204,7 +221,12 @@ export default function Auth() {
                         type="password"
                         placeholder="At least 6 characters"
                         value={registerData.password}
-                        onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                        onChange={(e) =>
+                          setRegisterData({
+                            ...registerData,
+                            password: e.target.value,
+                          })
+                        }
                         className="pl-10"
                         required
                         minLength={6}
@@ -213,7 +235,9 @@ export default function Auth() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="register-confirm-password">Confirm Password</Label>
+                    <Label htmlFor="register-confirm-password">
+                      Confirm Password
+                    </Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
                       <Input
@@ -221,7 +245,12 @@ export default function Auth() {
                         type="password"
                         placeholder="Confirm your password"
                         value={registerData.confirmPassword}
-                        onChange={(e) => setRegisterData({ ...registerData, confirmPassword: e.target.value })}
+                        onChange={(e) =>
+                          setRegisterData({
+                            ...registerData,
+                            confirmPassword: e.target.value,
+                          })
+                        }
                         className="pl-10"
                         required
                       />
@@ -231,7 +260,7 @@ export default function Auth() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-accent text-white hover:bg-blue-600"
+                    className="w-full bg-slate-200 text-black border-black  hover:bg-black hover:text-white"
                   >
                     {isLoading ? "Creating Account..." : "Create Account"}
                   </Button>
@@ -244,10 +273,14 @@ export default function Auth() {
         {/* Footer */}
         <div className="text-center text-sm text-slate-600">
           <p>
-            By signing up, you agree to our{' '}
-            <a href="#" className="text-accent hover:underline">Terms of Service</a>
-            {' '}and{' '}
-            <a href="#" className="text-accent hover:underline">Privacy Policy</a>
+            By signing up, you agree to our{" "}
+            <a href="#" className="text-accent hover:underline">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-accent hover:underline">
+              Privacy Policy
+            </a>
           </p>
         </div>
       </div>

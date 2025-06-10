@@ -53,12 +53,6 @@ export default function Dashboard() {
     tags: ''
   });
 
-  // Redirect if not authenticated
-  if (!user) {
-    navigate('/auth');
-    return null;
-  }
-
   // Queries
   const { data: userBooks = [] } = useQuery<Book[]>({
     queryKey: ['/api/dashboard/books'],
@@ -202,6 +196,18 @@ export default function Dashboard() {
     .reduce((sum, book) => sum + parseFloat(book.price), 0);
 
   const activeListings = userBooks.filter(book => !book.isSold).length;
+
+  // Redirect if not authenticated
+  if (!user) {
+    navigate('/auth');
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-slate-600">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">
