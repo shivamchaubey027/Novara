@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: novara-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres      # Label taaki Service isse dhoond sake
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          env:             # YWe set credentials here
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: novara-db-secret
+                  key: postgres-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: novara-db-secret
+                  key: postgres-password
+            - name: POSTGRES_DB
+              value: "novara_db"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service  # IMPORTANT: Yeh naam hi aapka 'Host' banega
+spec:
+  selector:
+    app: postgres      # Yeh upar wale 'app: postgres' label ko target karega
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
+---

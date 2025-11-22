@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: novara-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: novara-app
+  template:
+    metadata:
+      labels:
+        app: novara-app
+    spec:
+      containers:
+        - name: novara-app
+          image: shivamchaubey/novara:v0.1  # Local image use karenge
+          imagePullPolicy: Always   # Important for local MicroK8s
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL # This now references the secret
+              valueFrom:
+                secretKeyRef:
+                  name: novara-db-secret # The name of the Secret object
+                  key: database-url      # The key within the Secret
+            - name: PORT
+              value: "5000"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: novara-service
+spec:
+  type: ClusterIP  # Expose to outside world (your laptop)
+  selector:
+    app: novara-app
+  ports:
+    - protocol: TCP
+      port: 80        # Browser will use port 80
+      targetPort: 5000 # Container ka port
+---
