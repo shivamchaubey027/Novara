@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus-deployment
+  namespace: monitoring
+
   labels:
     app: prometheus-server
 spec:
@@ -14,6 +16,7 @@ spec:
       labels:
         app: prometheus-server
     spec:
+      serviceAccountName: prometheus
       containers:
         - name: prometheus
           image: prom/prometheus
@@ -22,10 +25,16 @@ spec:
           volumeMounts:
             - name: prometheus-config-volume
               mountPath: /etc/prometheus/
+            - name: prometheus-pvc
+              mountPath: /prometheus
+          
       volumes:
         - name: prometheus-config-volume
           configMap:
             name: prometheus-server-conf
+        - name: prometheus-pvc
+          persistentVolumeClaim:
+            claimName: prometheus-pvc
 
 
           
