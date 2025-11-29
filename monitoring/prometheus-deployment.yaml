@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: prometheus-deployment
   namespace: monitoring
-
   labels:
     app: prometheus-server
 spec:
@@ -22,6 +21,13 @@ spec:
           image: prom/prometheus
           ports:
             - containerPort: 9090
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
           volumeMounts:
             - name: prometheus-config-volume
               mountPath: /etc/prometheus/
@@ -35,6 +41,3 @@ spec:
         - name: prometheus-pvc
           persistentVolumeClaim:
             claimName: prometheus-pvc
-
-
-          
