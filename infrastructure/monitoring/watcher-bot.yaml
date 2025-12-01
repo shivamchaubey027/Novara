@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: watcher-bot
+  namespace: monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: watcherBot-roles
+  namespace: monitoring
+rules:
+  - apiGroups: ["autoscaling"]
+    resources:
+    - horizontalpodautoscalers
+    verbs: ["list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: 
+  name: watcherBot
+roleRef:
+ apiGroup: rbac.authorization.k8s.io
+ kind: ClusterRole
+ name: watcherBot-roles
+subjects:
+- kind: ServiceAccount
+  name: watcher-bot
+  namespace: monitoring
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: watcher-bot
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: watcher-bot
+  template:
+    metadata:
+      labels:
+        app: watcher-bot
+    spec:
+      serviceAccountName: watcher-bot
+      containers:
+      - name: watcher-bot
+        image: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.9.2
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: watcherbot-svc
+  namespace: monitoring
+spec:
+  selector:
+    app: watcher-bot
+  ports:
+  - port: 8080
+    targetPort: 8080
+
+

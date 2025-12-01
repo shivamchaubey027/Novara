@@ -30,6 +30,8 @@ spec:
                   key: postgres-password
             - name: POSTGRES_DB
               value: "novara_db"
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           resources:
             requests:
               memory: "256Mi"
@@ -39,7 +41,7 @@ spec:
               cpu: "500m"
           volumeMounts:
             - name: novara-db-pvc-volume
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql/data/pgdata
       volumes:
         - name: novara-db-pvc-volume
           persistentVolumeClaim: 

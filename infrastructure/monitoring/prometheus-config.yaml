@@ -24,3 +24,9 @@ data:
         - source_labels: [__meta_kubernetes_service_label_app] 
           regex: node-exporter
           action: keep
+    - job_name: 'kube-state-metrics'
+      static_configs:
+        - targets: ['ksm-service:8080']
+    - job_name: 'watcherBot'
+      static_configs:
+        - targets: ['watcherBot-svc:8080']
